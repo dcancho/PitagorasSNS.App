@@ -1,0 +1,23 @@
+{
+  "name": "pitagorassns",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "^13.0.6",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "vite": "^4.4.5"
+  },
+  "dependencies": {
+    "@types/vue": "^2.0.0",
+    "markdown-it": "^13.0.2",
+    "primeicons": "^6.0.1",
+    "primevue": "^3.40.1",
+    "typescript": "^5.2.2"
+  }
+}

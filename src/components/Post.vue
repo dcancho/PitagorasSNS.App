@@ -13,7 +13,7 @@
                 <Button :label="post.comments?.length.toString()" icon="pi pi-comment" @click="toggleComments" />
             </div>
             <div class="comment-section" v-if="showComments">
-                <CommentSection :comments="post.comments" />
+                <CommentSection :comments="post.comments" :post-id="post.id" />
             </div>
         </div>
     </div>
@@ -25,6 +25,7 @@ import PostText from './PostText.vue';
 import CommentSection from './CommentSection.vue';
 import Button from 'primevue/button';
 import { IPost } from './../domain/model/IPost';
+import axios from 'axios';
 
 const props = defineProps({
   post: {
@@ -40,7 +41,16 @@ const showComments = ref(false);
 const emits = defineEmits(['like-post']);
 
 function likePost(): void {
+    console.log(post.value.id);
     emits('like-post', post.value.id);
+
+    axios.put(`http://localhost:5264/api/v1/Post/${post.value.id}/like`)
+        .then(() => {
+            console.log('Post liked successfully');
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 }
 
 function toggleComments(): void {

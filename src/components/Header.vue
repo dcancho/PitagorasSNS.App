@@ -1,25 +1,27 @@
 <template>
-    <Menubar :model="items">
+    <Menubar>
         <template #start>
-            <img src="/logo.jpeg" alt="Logo" class="header-logo" />
+            <div class="start-slot">
+                <img src="/logo.jpeg" alt="Logo" class="header-logo" />
+            <span>Pitágoras</span>
+            </div>
         </template>
-        <div class="header-title">
-            <h1>Vue 3 Blog</h1>
-        </div>
+        <template #end>
+            <Button label="Log out" icon="pi pi-power-off" @click="logout" />
+        </template>
     </Menubar>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
 import Menubar from 'primevue/menubar';
+import Button from 'primevue/button';
+import router from '../router';
 
-const items = ref([
-    {
-        label: 'Home',
-        icon: 'pi pi-fw pi-home',
-        command: () => { /* navigate to home */ }
-    },
-]);
+function logout() {
+    localStorage.removeItem('userCode');
+    router.push('/login');
+}
+
 </script>
 
 <style scoped>
@@ -27,5 +29,10 @@ const items = ref([
     height: 2rem;
     width: 2rem;
     border-radius: 50%;
+}
+.start-slot {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 </style>

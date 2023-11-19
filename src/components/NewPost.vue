@@ -3,8 +3,8 @@
         <TabView class="tab-view">
             <TabPanel header="Write">
                 <div class="tab-panel input-panel">
-                    <InputText class="text-area" v-model="title" />
-                    <Textarea class="text-area" v-model="value" rows="8" />
+                    <InputText class="text-area" placeholder="Catchy title in here" v-model="title" />
+                    <Textarea class="text-area" placeholder="Use Markdown here to style your post!" v-model="value" rows="8" />
                 </div>
             </TabPanel>
             <TabPanel header="Preview">

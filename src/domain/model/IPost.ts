@@ -7,5 +7,5 @@ export interface IPost {
     content: string;
     authorCode: string;
     likes: number;
-    comments?: Comment[];
+    comments?: String[];
   }

@@ -1,7 +1,7 @@
 <template>
     <div class="post">
         <div class="post-header">
-            <img class="avatar" src="https://avatars.githubusercontent.com/u/54212428?v=4" />
+            <img class="avatar" :src="avatarUrl" />
             <h2>{{ post.title }}</h2>
         </div>
         <div class="post-body">
@@ -20,18 +20,24 @@
 </template>
 
 <script setup lang="ts">
-import { ref, toRefs } from 'vue';
+import { computed, ref, toRefs } from 'vue';
 import PostText from './PostText.vue';
 import CommentSection from './CommentSection.vue';
 import Button from 'primevue/button';
 import { IPost } from './../domain/model/IPost';
 import axios from 'axios';
+import md5 from 'js-md5';
 
 const props = defineProps({
   post: {
     type: Object as () => IPost,
     required: true
   }
+});
+
+const avatarUrl = computed(() => {
+    const hash = md5(post.value.authorCode);
+    return `https://www.gravatar.com/avatar/${hash}`;
 });
 
 const { post } = toRefs(props);

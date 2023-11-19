@@ -5,9 +5,9 @@
             <Button label="Post" @click="postComment" />
         </div>
         <div class="comment-container">
-            <div class="comment" v-for="(comment) in comments" :key="comment.id">
-            <p>{{ comment.text }}</p>
-        </div>
+            <div class="comment" v-for="(comment, index) in comments" :key="index">
+                <p>{{ comment }}</p>
+            </div>
         </div>
     </div>
 </template>
@@ -21,7 +21,7 @@ import axios from 'axios';
 
 const props = defineProps({
     comments: {
-        type: Array as () => Comment[],
+        type: Array as () => String[],
         default: () => [],
     },
     postId: {

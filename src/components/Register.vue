@@ -26,6 +26,7 @@ import InputText from 'primevue/inputtext';
 import Password from 'primevue/password';
 import Dropdown from 'primevue/dropdown';
 import Button from 'primevue/button';
+import router from './../router';
 
 const form = reactive({
     name: '',
@@ -58,10 +59,6 @@ const getRequestBody = () => {
 };
 
 const submitForm = async () => {
-    alert('Form submit called!');
-    console.log(form);
-    console.log(getRequestBody());
-
     try {
         const serverUrl = "http://localhost:5264";
         const endpoint = `${serverUrl}/api/v1/${form.userType}`;
@@ -71,9 +68,8 @@ const submitForm = async () => {
             }
         
         });
-        console.log('Success:', response.data);
-        // Set the Id in the local storage
         localStorage.setItem('userCode', form.userCode);
+        router.push('/');
     } catch (error) {
         console.error('Error:', error);
     }

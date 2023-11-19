@@ -3,13 +3,14 @@
         <div class="post-header">
             <img class="avatar" :src="avatarUrl" />
             <h2>{{ post.title }}</h2>
+            <p class="author-code">{{ post.authorCode }}</p>
         </div>
         <div class="post-body">
             <PostText :text="post.content" />
         </div>
         <div class="post-footer">
             <div class="post-action-bar">
-                <Button :label="post.likes.toString()" icon="pi pi-thumbs-up" @click="likePost"/>
+                <Button :label="post.likes.toString()" icon="pi pi-thumbs-up" @click="likePost" />
                 <Button :label="post.comments?.length.toString()" icon="pi pi-comment" @click="toggleComments" />
             </div>
             <div class="comment-section" v-if="showComments">
@@ -26,18 +27,16 @@ import CommentSection from './CommentSection.vue';
 import Button from 'primevue/button';
 import { IPost } from './../domain/model/IPost';
 import axios from 'axios';
-import md5 from 'js-md5';
 
 const props = defineProps({
-  post: {
-    type: Object as () => IPost,
-    required: true
-  }
+    post: {
+        type: Object as () => IPost,
+        required: true
+    }
 });
 
 const avatarUrl = computed(() => {
-    const hash = md5(post.value.authorCode);
-    return `https://www.gravatar.com/avatar/${hash}`;
+    return `https://robohash.org/${post.value.authorCode}`;
 });
 
 const { post } = toRefs(props);
@@ -60,7 +59,7 @@ function likePost(): void {
 }
 
 function toggleComments(): void {
-  showComments.value = !showComments.value;
+    showComments.value = !showComments.value;
 }
 
 </script>
@@ -95,4 +94,10 @@ function toggleComments(): void {
 .comment-count {
     margin-left: 5px;
 }
-</style>../domain/model/IPost
+
+.author-code {
+    font: 0.75rem 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #888;
+    opacity: 0.6;
+}
+</style>

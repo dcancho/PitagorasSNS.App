@@ -26,7 +26,7 @@ const posts = ref<Array<IPost>>([]);
 
 const getPosts = async () => {
   try {
-    const response = await axios.get('http://localhost:5264/api/v1/Post');
+    const response = await axios.get('http://20.163.79.122:80/api/v1/Post');
     posts.value = response.data;
   } catch (error) {
     console.error('Error:', error);

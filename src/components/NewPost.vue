@@ -56,7 +56,7 @@ const postPost = async () => {
     };
 
     try {
-      await axios.post('http://localhost:5264/api/v1/Post', payload);
+      await axios.post('http://20.163.79.122:80/api/v1/Post', payload);
       value.value = '';
         title.value = '';
     } catch (error) {

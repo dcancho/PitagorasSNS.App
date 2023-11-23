@@ -60,7 +60,7 @@ const getRequestBody = () => {
 
 const submitForm = async () => {
     try {
-        const serverUrl = "http://localhost:5264";
+        const serverUrl = "http://20.163.79.122:80";
         const endpoint = `${serverUrl}/api/v1/${form.userType}`;
         const response = await axios.post(endpoint, getRequestBody(), {
             headers: {

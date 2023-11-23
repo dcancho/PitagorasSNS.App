@@ -24,7 +24,7 @@ const form = reactive({
 
 const submitForm = async () => {
     try {
-        const serverUrl = "http://localhost:5264";
+        const serverUrl = "http://20.163.79.122:80";
         const studentEndpoint = `${serverUrl}/api/v1/Student/${form.code}`;
         const teacherEndpoint = `${serverUrl}/api/v1/Teacher/${form.code}`;
 

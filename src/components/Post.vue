@@ -46,12 +46,10 @@ const showComments = ref(false);
 const emits = defineEmits(['like-post']);
 
 function likePost(): void {
-    console.log(post.value.id);
-    emits('like-post', post.value.id);
 
-    axios.put(`http://localhost:5264/api/v1/Post/${post.value.id}/like`)
+    axios.put(`http://20.163.79.122:80/api/v1/Post/${post.value.id}/like`)
         .then(() => {
-            console.log('Post liked successfully');
+            
         })
         .catch(error => {
             console.error('Error:', error);

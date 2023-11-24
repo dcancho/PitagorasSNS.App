@@ -4,7 +4,16 @@
             <TabPanel header="Write">
                 <div class="tab-panel input-panel">
                     <InputText class="text-area" placeholder="Catchy title in here" v-model="title" />
-                    <Textarea class="text-area" placeholder="Use Markdown here to style your post!" v-model="value" rows="8" />
+                    <Textarea class="text-area" placeholder="Use Markdown here to style your post!
+# for h1, ## for h2...
+* for italic, ** for bold...
+[link text](link url) for links
+![alt text](image url) for images
+and so on...
+                    " v-model="value" rows="8" />
+                    <small>Markdown is supported to style the post.<br>Check out <a
+                            href="https://www.markdownguide.org/cheat-sheet/" target="_blank">Markdown Cheat Sheet</a> for
+                        more info!</small>
                 </div>
             </TabPanel>
             <TabPanel header="Preview">
@@ -36,6 +45,7 @@ import TabView from 'primevue/tabview';
 import TabPanel from 'primevue/tabpanel';
 import DOMPurify from 'dompurify';
 import axios from 'axios';
+import Tooltip from 'primevue/tooltip';
 
 const value = ref('');
 const title = ref('');
@@ -47,22 +57,22 @@ const markdownContent = computed(() => {
 });
 
 const postPost = async () => {
-  if (value.value) {
-    const payload = {
-      title: title.value,
-      attachedMedia: [],
-      content: value.value,
-      authorCode: localStorage.getItem('userCode'),
-    };
+    if (value.value) {
+        const payload = {
+            title: title.value,
+            attachedMedia: [],
+            content: value.value,
+            authorCode: localStorage.getItem('userCode'),
+        };
 
-    try {
-      await axios.post('http://20.163.79.122:80/api/v1/Post', payload);
-      value.value = '';
-        title.value = '';
-    } catch (error) {
-      console.error('Error:', error);
+        try {
+            await axios.post('http://20.163.79.122:80/api/v1/Post', payload);
+            value.value = '';
+            title.value = '';
+        } catch (error) {
+            console.error('Error:', error);
+        }
     }
-  }
 };
 </script>
 

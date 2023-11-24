@@ -8,8 +8,8 @@
         </template>
         <template #end>
             <div class="end-container">
-                <label>Logged in as {{ userCode }}</label>
-                <Button label="Log out" icon="pi pi-power-off" @click="logout" />
+                <label class="logged-in-as">Logged in as {{ userCode }}</label>
+                <Button :label="buttonLabel" icon="pi pi-power-off" @click="logout" />
             </div>
         </template>
     </Menubar>
@@ -19,6 +19,7 @@
 import Menubar from 'primevue/menubar';
 import Button from 'primevue/button';
 import router from '../router';
+import {computed} from 'vue';
 
 var userCode = localStorage.getItem('userCode');
 
@@ -26,6 +27,10 @@ function logout() {
     localStorage.removeItem('userCode');
     router.push('/login');
 }
+
+const buttonLabel = computed(() => {
+    return window.innerWidth < 300 ? '' : 'Log out';
+});
 
 </script>
 
@@ -47,5 +52,18 @@ function logout() {
     align-items: center;
     flex-direction: row;
     gap: 1rem;
+}
+
+
+@media (max-width: 470px) {
+    .logged-in-as {
+        display: none;
+    }
+}
+
+@media (max-width: 300px) {
+    button span {
+        display: none;
+    }
 }
 </style>

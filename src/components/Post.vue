@@ -2,8 +2,10 @@
     <div class="post">
         <div class="post-header">
             <img class="avatar" :src="avatarUrl" />
-            <h2>{{ post.title }}</h2>
-            <p class="author-code">{{ post.authorCode }}</p>
+            <div class="header-text-container">
+                <h2>{{ post.title }}</h2>
+                <p class="author-code">{{ post.authorCode }}</p>
+            </div>
         </div>
         <div class="post-body">
             <PostText :text="post.content" />
@@ -45,16 +47,14 @@ const showComments = ref(false);
 
 const emits = defineEmits(['like-post']);
 
-function likePost(): void {
-
-    axios.put(`http://20.163.79.122:80/api/v1/Post/${post.value.id}/like`)
-        .then(() => {
-            
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-}
+const likePost = async () => {
+    try {
+        await axios.put(`http://20.163.79.122:80/api/v1/Post/${post.value.id}/like`);
+        post.value.likes += 1;
+    } catch (error) {
+        console.error('Error:', error);
+    }
+};
 
 function toggleComments(): void {
     showComments.value = !showComments.value;
@@ -98,4 +98,10 @@ function toggleComments(): void {
     color: #888;
     opacity: 0.6;
 }
+
+.header-text-container h2,
+.header-text-container p {
+    margin: 0;
+}
+
 </style>

@@ -45,7 +45,7 @@ onMounted(() => {
   flex-direction: column;
   align-items: center;
   gap: 2rem;
-  width: 40%;
+  width: 50%;
 }
 
 @media (max-width: 992px) {
@@ -53,6 +53,7 @@ onMounted(() => {
     width: 100%;
   }
 }
+
 
 main {
   display: flex;

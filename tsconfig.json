@@ -1,19 +1,23 @@
 {
-    "compilerOptions": {
-        "target": "es6",
-        "module": "commonjs",
-        "strict": true,
-        "typeRoots": ["./node_modules/@types", "./src/types"],
-        "esModuleInterop": true,
-        "skipLibCheck": true,
-        "forceConsistentCasingInFileNames": true
-    },
-    "include": [
-        "src/**/*.ts",
-        "src/**/*.vue",
-        "src/components/**/*.ts",
-    ],
-    "exclude": [
-        "node_modules"
-    ]
+	"compilerOptions": {
+		"target": "es6",
+		"module": "commonjs",
+		"strict": true,
+		"typeRoots": [
+			"./node_modules/@types",
+			"./src/types"
+		],
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true
+	},
+	"include": [
+		"src/**/*.ts",
+		"src/**/*.vue",
+		"src/components/**/*.ts",
+		"src/config.ts",
+	],
+	"exclude": [
+		"node_modules"
+	]
 }

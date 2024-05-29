@@ -1,0 +1,1 @@
+export const serverUrl = 'https://pitagorassns-api.azurewebsites.net/api/v1/';

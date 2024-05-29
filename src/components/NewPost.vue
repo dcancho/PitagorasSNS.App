@@ -45,7 +45,7 @@ import TabView from 'primevue/tabview';
 import TabPanel from 'primevue/tabpanel';
 import DOMPurify from 'dompurify';
 import axios from 'axios';
-import Tooltip from 'primevue/tooltip';
+import {serverUrl} from '../config';
 
 const value = ref('');
 const title = ref('');
@@ -66,7 +66,7 @@ const postPost = async () => {
         };
 
         try {
-            await axios.post('http://20.163.79.122:80/api/v1/Post', payload);
+            await axios.post(`${serverUrl}Post`, payload);
             value.value = '';
             title.value = '';
         } catch (error) {

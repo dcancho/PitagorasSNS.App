@@ -17,6 +17,7 @@ import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
 import { ref } from 'vue';
 import axios from 'axios';
+import {serverUrl} from '../config';
 
 const props = defineProps({
     comments: {
@@ -34,7 +35,7 @@ const newComment = ref('');
 const postComment = async () => {
     if (newComment.value) {
         try {
-            await axios.put(`http://20.163.79.122:80/api/v1/Post/${props.postId}/comment`, JSON.stringify(newComment.value), {
+            await axios.put(`${serverUrl}Post/${props.postId}/comment`, JSON.stringify(newComment.value), {
                 headers: { 'Content-Type': 'application/json' }
             });
             newComment.value = '';

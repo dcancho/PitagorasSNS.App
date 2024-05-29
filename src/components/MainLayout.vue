@@ -21,12 +21,13 @@ import Header from './Header.vue';
 import NewPost from './NewPost.vue';
 import axios from 'axios';
 import { onMounted } from 'vue';
+import {serverUrl} from './../config';
 
 const posts = ref<Array<IPost>>([]);
 
 const getPosts = async () => {
   try {
-    const response = await axios.get('http://20.163.79.122:80/api/v1/Post');
+    const response = await axios.get(`${serverUrl}Post`);
     posts.value = response.data;
   } catch (error) {
     console.error('Error:', error);

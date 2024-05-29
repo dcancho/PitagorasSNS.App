@@ -29,6 +29,7 @@ import CommentSection from './CommentSection.vue';
 import Button from 'primevue/button';
 import { IPost } from './../domain/model/IPost';
 import axios from 'axios';
+import {serverUrl} from './../config';
 
 const props = defineProps({
     post: {
@@ -49,7 +50,7 @@ const emits = defineEmits(['like-post']);
 
 const likePost = async () => {
     try {
-        await axios.put(`http://20.163.79.122:80/api/v1/Post/${post.value.id}/like`);
+        await axios.put(`${serverUrl}Post/${post.value.id}/like`);
         post.value.likes += 1;
     } catch (error) {
         console.error('Error:', error);
